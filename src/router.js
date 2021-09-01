@@ -8,6 +8,8 @@ import SessionController from './controllers/SessionController';
 import FileController from './controllers/FileController';
 import CollaboratorController from './controllers/CollaboratorController';
 import AppointmentController from './controllers/AppointmentController';
+import ScheduleController from './controllers/ScheduleController';
+import NotificationController from './controllers/NotificationController';
 
 import authMiddlewares from './middlewares/auth';
 
@@ -23,9 +25,19 @@ routes.put('/users', UserController.update);
 
 //Rota de agendamento
 routes.post('/appointments', AppointmentController.store);
+routes.get('/appointments', AppointmentController.index);
 
 //Lista todos colaboradores
 routes.get('/collaborator', CollaboratorController.index);
+
+//Listagem de agendamentos colaborador
+routes.get('/schedule', ScheduleController.index);
+
+//Listagem de Notificações
+routes.get('/notifications', NotificationController.index);
+
+//Marcar como lida
+routes.put('/notifications/:id', NotificationController.update);
 
 //Upload de arquivos
 routes.post('/files', upload.single('file'), FileController.store);
